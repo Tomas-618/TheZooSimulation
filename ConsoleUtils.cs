@@ -19,13 +19,16 @@ namespace TheZooSimulation
             return number;
         }
 
-        public static bool TryAnswer(string positive = "yes", string negative = "no")
+        public static bool TryAnswer(string text, string positive = "y", string negative = "n")
         {
+            Console.WriteLine(text);
             string userInput = Console.ReadLine();
 
             while (userInput.ToLower() != positive.ToLower() && userInput.ToLower() != negative.ToLower())
             {
                 Console.WriteLine("\nError! Try again!");
+
+                Console.WriteLine(text);
                 userInput = Console.ReadLine();
             }
 

@@ -15,11 +15,9 @@ namespace TheZooSimulation
 
                 Console.WriteLine($"\n{zoo.GetAviaryInfo(aviaryIndex - 1)}");
 
-                Console.WriteLine($"Do you want to choose another {nameof(Aviary).ToLower()}");
-                isContinue = ConsoleUtils.TryAnswer();
+                isContinue = ConsoleUtils.TryAnswer($"Do you want to choose another {nameof(Aviary).ToLower()}? (y/n)");
                 Console.Clear();
             }
-
         }
     }
 }

@@ -1,23 +1,21 @@
-﻿namespace TheZooSimulation
-{
-    public class Animal
-    {
-        private readonly Animals _dictionary;
-        private readonly Gender _gender;
+﻿using System;
 
-        public Animal(AnimalType type, Gender gender)
+namespace TheZooSimulation
+{
+    public abstract class Animal
+    {
+        private Gender _gender;
+        private string _type;
+        private string _sound;
+
+        protected Animal(Gender gender, string type, string sound)
         {
-            _dictionary = new Animals();
-            Type = type;
             _gender = gender;
-            Sound = _dictionary.GetSound(type);
+            _type = type ?? throw new ArgumentNullException(nameof(type));
+            _sound = sound ?? throw new ArgumentNullException(nameof(sound));
         }
 
-        public AnimalType Type { get; }
-
-        public string Sound { get; }
-
         public override string ToString() =>
-            $"Gender: {_gender}";
+            $"Type: {_type} || Sound: {_sound} || Gender: {_gender}";
     }
 }

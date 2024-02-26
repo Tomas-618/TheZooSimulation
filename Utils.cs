@@ -10,9 +10,9 @@ namespace TheZooSimulation
             _random = new Random();
 
         public static int GetRandomNumber(in int minValue, in int maxValue) =>
-            _random.Next(minValue, maxValue + 1);
+            _random.Next(minValue, maxValue);
 
         public static int GetRandomNumber(in int maxValue) =>
-            _random.Next(maxValue + 1);
+            _random.Next(maxValue);
     }
 }

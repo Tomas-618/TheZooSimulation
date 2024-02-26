@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TheZooSimulation
 {
@@ -7,12 +7,17 @@ namespace TheZooSimulation
     {
         private List<Animal> _animals;
 
-        public Aviary(AnimalType type) =>
-            _animals = GetAnimals(type);
+        public Aviary(List<Animal> animals)
+        {
+            if (animals.Count == 0)
+                throw new ArgumentOutOfRangeException($"{nameof(animals)}: {animals}");
+
+            _animals = animals ?? throw new ArgumentNullException(nameof(animals));
+        }
 
         public override string ToString()
         {
-            string result = $"Type: {_animals.First().Type} || Sound: {_animals.First().Sound}\n";
+            string result = string.Empty;
 
             for (int i = 0; i < _animals.Count; i++)
             {
@@ -22,25 +27,6 @@ namespace TheZooSimulation
             }
 
             return result;
-        }
-
-        private List<Animal> GetAnimals(AnimalType type)
-        {
-            List<Animal> animals = new List<Animal>();
-
-            int minAnimalsCount = 1;
-            int maxAnimalsCount = 8;
-
-            int animalsCount = Utils.GetRandomNumber(minAnimalsCount, maxAnimalsCount);
-
-            for (int i = 0; i < animalsCount; i++)
-            {
-                int animalGender = Utils.GetRandomNumber(1);
-
-                animals.Add(new Animal(type, (Gender)animalGender));
-            }
-
-            return animals;
         }
     }
 }
